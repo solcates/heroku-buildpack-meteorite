@@ -124,9 +124,9 @@ curl https://install.meteor.com | HOME="$VENDORED_METEOR" /bin/sh | indent
 echo "Meteor installed" | indent
 
 echo "Installing packages" | indent
-for i in $( cat "$BUILD_DIR"/.meteor/packages); do
-
-  HOME="$BUILD_DIR" mrt install $i --force | indent
+cat "$BUILD_DIR"/.meteor/packages | while read line
+do
+   HOME="$BUILD_DIR" mrt install $line --force | indent
 done
 echo "Building meteor bundle" | indent
 HOME="$VENDORED_METEOR" "$VENDORED_METEOR"/.meteor/meteor bundle "$CACHE_DIR"/bundle.tar.gz 2>&1 | indent
