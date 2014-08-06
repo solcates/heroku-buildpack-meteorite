@@ -126,6 +126,7 @@ echo "Meteor installed" | indent
 echo "Installing packages" | indent
 cat "$BUILD_DIR"/.meteor/packages | while read line
 do
+   echo $line
    HOME="$BUILD_DIR" mrt install $line --force | indent
 done
 echo "Building meteor bundle" | indent
